@@ -1,0 +1,14 @@
+.Task {
+
+}
+
+.Task span {
+    color:red;
+    cursor: pointer;
+    display: none;
+    float: right;
+}
+
+.Task:hover span {
+    display: inline-block;
+}
