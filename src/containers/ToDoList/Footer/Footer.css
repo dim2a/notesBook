@@ -1,0 +1,16 @@
+.Footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Footer .buttons {
+
+}
+
+.Footer .buttons button.active {
+    border: 2px solid black;
+}
+
+.Footer > button {
+
+}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import classes from './ToDoList.css'
 import Task from './Task/Task'
+import Footer from './Footer/Footer'
 
 class ToDoList extends Component {
 
@@ -50,10 +51,11 @@ class ToDoList extends Component {
                     <input onKeyPress={this.createNewTask} />
                     <div className={classes.tasks}>
                         {this.state.tasks.map((task) => {
-                            return <Task task={task} deleteCallback={this.deleteTask} key={task.id} />
+                            return <Task task={task} deleteCallback={this.deleteTask} key={task.id} />                                
                         })}
                     </div>
                 </div>
+                <Footer />
             </div>
         )
     }

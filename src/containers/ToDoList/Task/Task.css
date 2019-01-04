@@ -1,5 +1,10 @@
 .Task {
+    padding: 5px;
+    margin-top: 5px;
+}
 
+.Task:hover {
+    background: lightgrey;
 }
 
 .Task span {
