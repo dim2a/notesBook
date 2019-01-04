@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import classes from './ToDoList.css'
 import Task from './Task/Task'
 import Footer from './Footer/Footer'
+import TaskCreator from './TaskCreator/TaskCreator'
 
 class ToDoList extends Component {
 
@@ -20,20 +21,10 @@ class ToDoList extends Component {
         ]
     }
 
-    newIndex = 2
-
-    createNewTask = e => {
-        if (e.key === 'Enter') {
-            this.setState({
-                tasks: [...this.state.tasks, {
-                    title: e.currentTarget.value,
-                    isDone: false,
-                    id: this.newIndex
-                }]
-            })
-            e.currentTarget.value = ''
-            this.newIndex++
-        }
+    createNewTask = task => {
+        this.setState({
+            tasks: [...this.state.tasks, task]
+        })
     }
 
     deleteTask = taskId => {
@@ -46,14 +37,12 @@ class ToDoList extends Component {
 
     render() {
         return (
-            <div className={classes.ToDoList}>
-                <div className={classes.header}>
-                    <input onKeyPress={this.createNewTask} />
-                    <div className={classes.tasks}>
-                        {this.state.tasks.map((task) => {
-                            return <Task task={task} deleteCallback={this.deleteTask} key={task.id} />                                
-                        })}
-                    </div>
+            <div className={classes.ToDoList}>  
+                <TaskCreator createCallback={this.createNewTask} />                  
+                <div className={classes.tasks}>
+                    {this.state.tasks.map((task) => {
+                        return <Task task={task} deleteCallback={this.deleteTask} key={task.id} />                                
+                    })}
                 </div>
                 <Footer />
             </div>
