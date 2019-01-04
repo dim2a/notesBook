@@ -6,12 +6,6 @@ class Task extends Component {
         task: this.props.task
     }
 
-    parrentDeleteCallback = this.props.deleteCallback
-
-    deleteTask = () => {
-        this.parrentDeleteCallback(this.state.task.id)
-    }
-
     togleTaskStatus = () => {
         let newTask = {
             ...this.state.task,
@@ -25,9 +19,11 @@ class Task extends Component {
     render() {
         return(
             <div className={classes.Task}>
-                <input type="checkbox" checked={this.state.task.isDone} onClick={this.togleTaskStatus} />
+                <input type="checkbox"
+                    checked={this.state.task.isDone}
+                    onChange={this.togleTaskStatus} />
                 {this.props.index}{this.state.task.title}
-                <span onClick={this.deleteTask}>X</span>
+                <span onClick={() => {this.props.deleteCallback(this.state.task.id)}}>X</span>
             </div>
         )
     }

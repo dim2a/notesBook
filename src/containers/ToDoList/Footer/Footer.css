@@ -1,4 +1,7 @@
 .Footer {
+    border-top: 1px solid grey;
+    margin-top: 15px;
+    padding-top: 5px;
     display: flex;
     justify-content: space-between;
 }
