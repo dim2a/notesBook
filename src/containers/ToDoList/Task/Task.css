@@ -17,3 +17,7 @@
 .Task:hover span {
     display: inline-block;
 }
+
+.Task .active {
+    text-decoration: inherit;
+}

@@ -10,7 +10,7 @@
 
 }
 
-.Footer .buttons button.active {
+.Footer .buttons button.selected {
     border: 2px solid black;
 }
 

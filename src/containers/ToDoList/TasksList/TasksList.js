@@ -1,23 +1,19 @@
-import React, {Component} from 'react'
+import React from 'react'
 import classes from './TasksList.css'
 import Task from '../Task/Task'
 
-class TasksList extends Component {
+const TasksList = props => {
 
-
-
-    render() {
-        return(
-            <div className={classes.TasksList}>
-                {this.props.tasks.map((task) => {
-                    return <Task task={task}
-                        deleteCallback={this.props.onDelete}
-                        key={task.id} />                                
-                })}
-            </div>
-        )
-    }
-
+    return(
+        <div className={classes.TasksList}>
+            {props.tasks.map((task) => {
+                return <Task task={task}
+                    updateCallBack={props.onUpdate}
+                    deleteCallback={props.onDelete}
+                    key={task.id} />                                
+            })}
+        </div>
+    )
 }
 
 export default TasksList
