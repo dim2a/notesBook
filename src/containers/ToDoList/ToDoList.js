@@ -46,22 +46,33 @@ class ToDoList extends Component {
         this.setState({tasks: newTaskList})
     }
 
-    changeFilter = (filterValue) => {
-        console.log(filterValue)
+    changeFilter = filterValue => {
         this.setState({filter: filterValue})
+    }
+
+    clearCompleted = () => {
+        this.setState({tasks: this.state.tasks.filter(t => !t.isDone)})
     }
 
     render() {
         const {tasks, filter} = this.state
+        var filteredTasks = []
+
+        if (filter ==='all') filteredTasks = tasks
+        if (filter ==='active') filteredTasks = tasks.filter(t => !t.isDone)
+        if (filter ==='completed') filteredTasks = tasks.filter(t => t.isDone)
+        
+
         return (
             <div className={classes.ToDoList}>  
                 <TaskCreator createCallback={this.putTaskToState} />
-                <TasksList tasks={tasks}
+                <TasksList tasks={filteredTasks}
                 onUpdate={this.changeTaskStatus}
                 onDelete={this.deleteTask}/>                
                 <Footer tasks={tasks}
                     filter={filter}
-                    changeFilterCallback={this.changeFilter} />
+                    changeFilterCallback={this.changeFilter}
+                    clearCompletedCallback={this.clearCompleted} />
             </div>
         )
     }

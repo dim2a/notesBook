@@ -13,11 +13,13 @@ class Task extends Component {
     render() {
         return(
             <div className={classes.Task}>
+            <div className={this.props.task.isDone ? classes.active : ''}>
                 <input type="checkbox"
                     checked={this.props.task.isDone}
                     onChange={this.togleTaskStatus} />
                 {this.props.task.title}
                 <span onClick={() => {this.props.deleteCallback(this.props.task.id)}}>X</span>
+            </div>
             </div>
         )
     }
