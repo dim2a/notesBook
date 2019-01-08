@@ -4,22 +4,39 @@ import Footer from './Footer/Footer'
 import TaskCreator from './TaskCreator/TaskCreator'
 import TasksList from './TasksList/TasksList'
 
+
+
 class ToDoList extends Component {
 
     state = {
         tasks: [
-            {
-                id: 0,
-                title: "learn js",
-                isDone: false
-            },
-            {
-                id: 1,
-                title: "learn react",
-                isDone: false
-            }
+            
         ],
         filter: 'all'
+    } 
+
+    componentWillMount() {
+        const settings = {
+            method: "GET",
+            headers: {
+                'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                'accept': 'application/json' 
+            },
+            mode: 'cors'
+        }
+        
+        fetch(" https://repetitora.net/api/JS/Tasks?widgetId=2901&count=30", settings )
+                    .then(result => result.json())
+                    .then(tasksFromServer => {
+                        const tasks = tasksFromServer.map(itemFromServer => {
+                            return {
+                                id : itemFromServer.id,
+                                title : itemFromServer.title,
+                                isDone : itemFromServer.done
+                            }
+                        })
+                        this.setState({tasks})
+                    })
     }
 
     putTaskToState = task => {
