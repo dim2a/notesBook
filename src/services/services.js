@@ -32,3 +32,14 @@ export function getTasks(widgetId) {
 
     return requestData(`${apiURL}?widgetId=${widgetId}&count=30`, 'GET', null)
 }
+
+export function updateTask (widget,taskId, title, isDone ) {
+
+    const data = new URLSearchParams();
+    data.append('widgetId', widget)
+    data.append('taskId', taskId)
+    data.append('title', title)
+    data.append('done', isDone)
+
+    return requestData(apiURL, 'PUT', data)
+}

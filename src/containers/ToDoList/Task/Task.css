@@ -7,7 +7,7 @@
     background: lightgrey;
 }
 
-.Task span {
+.Task span:last-child {
     color:red;
     cursor: pointer;
     display: none;
