@@ -1,29 +1,15 @@
 import React, {Component} from 'react'
 import classes from './TaskCreator.css'
+import { createTask } from '../../../services/services';
 
 class TaskCreator extends Component {
 
-    createNewTask = e => {
-
-        const data = new URLSearchParams();
-        data.append('widgetId', 2901)
-        data.append('title', e.currentTarget.value)
-        const newTaskInput = e.currentTarget
-
-        const settings = {
-            method: "POST",
-            body: data,
-            headers: {
-                'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-                'accept': 'application/json' 
-            },
-            mode: 'cors'
-        }
+    createNewTask = e => {     
 
         if (e.key === 'Enter') {
-
-            fetch(" https://repetitora.net/api/JS/Tasks", settings )
-                .then(result => result.json())
+            
+            const newTaskInput = e.currentTarget
+            createTask(newTaskInput.value, 2901)
                 .then(data => {
                     const newTask =  {
                         title: data.task.title,
@@ -33,9 +19,7 @@ class TaskCreator extends Component {
                 
                     this.props.createCallback(newTask)
                     newTaskInput.value = ''
-                })
-
-            
+                })            
         }            
     }
     
